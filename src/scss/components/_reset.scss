@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+button,
+input[type="submit"] {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

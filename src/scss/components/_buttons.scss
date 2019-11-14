@@ -1,0 +1,175 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 50px;
+  height: 40px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  outline: none;
+  transition: all $trans-prop;
+  
+  &--blue {
+    background: $blue;
+
+    &:hover {
+      background: $blue-hover;
+    }
+  }
+  
+  &--yellow {
+    background: $yellow;
+  }
+
+  &--text {
+    width: auto;
+    padding: 0 18px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: (16/14);
+    text-align: center;
+    color: #000000;
+
+    &:hover {
+      background: $yellow-hover;
+    }
+  }
+}
+
+.btn-open-modal {
+  position: relative;
+  border-bottom-right-radius: 0px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 0;
+    border-color: transparent $blue transparent transparent;
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    transition: all $trans-prop;
+  }
+
+  .btn__initial-icon,
+  .btn__close-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all $trans-prop;
+  }
+
+  .btn__close-icon {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.active {
+    border-bottom-right-radius: 4px;
+
+    &::before {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .btn__initial-icon {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .btn__close-icon {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &:hover {
+      .tooltip {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(5px, -50%);
+      }
+    }
+  }
+
+  &:hover {
+    .tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(0px, -50%);
+    }
+
+    .tooltip--thankyou {
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(5px, -50%);
+    }
+
+    &::before {
+      border-color: transparent $blue-hover transparent transparent;
+    }
+  }
+}
+
+.feedback__reaction-btn {
+  box-shadow: none;
+  position: relative;
+
+  @media screen and (max-width: $mobile) {
+    width: 40px;
+  }
+  
+  &:hover {
+    background: $yellow !important;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 0 9px 10px 9px;
+    border-color: transparent transparent #fff transparent;
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 11px);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 0 9px 10px 9px;
+    border-color: transparent transparent #DADADA transparent;
+    position: absolute;
+    top: calc(100% + 10px);
+  }
+
+  &::before,
+  &::after {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $trans-prop;
+  }
+
+  &.active {
+    &::before,
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.feedback__panel-mobile-close {
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
